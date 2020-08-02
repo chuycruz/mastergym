@@ -1,0 +1,8 @@
+.imgCliente {
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    border-radius: 18px;
+    transition-duration: .3s;
+    box-shadow: -3px 3px 15px #505050;
+}

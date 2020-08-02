@@ -1,0 +1,57 @@
+<div class="container mt-5" >
+    <div class="row">
+        <div class="col-sm-6">
+            <app-seleccionar-cliente 
+            [nombre]="clienteSeleccionado.nombre" 
+            (seleccionoCliente)="asignarCliente($event)"
+            (canceloCliente)="eliminarCliente()"
+            ></app-seleccionar-cliente>
+
+            <div class="from-control"> 
+                <label for="">Precio</label>
+                <select (change)="seleccionarPrecio($event.target.value)" class="form-control">
+                    <option [value]="null">Seleccione un precio</option>
+                    <option *ngFor="let precio of precios" [value]="precio.id">{{ precio.nombre }}</option>
+                </select>
+            </div>
+
+            <div class="from-control">
+                <label for="">Fecha Inicio</label>
+                <input class="form-control" [value]="inscripcion.fecha | date" type="text" disabled>
+            </div>
+
+            <div class="from-control">
+                <label for="">Fecha Fin</label>
+                <input class="form-control" [value]="inscripcion.fechaFinal | date" type="text" disabled>
+            </div>
+            
+            <div class="from-control">
+                <label for="">Subtotal</label>
+                <input class="form-control" [value]="inscripcion.subTotal" type="number" disabled>
+            </div>
+
+            <div class="from-control">
+                <label for="">IVA</label>
+                <input class="form-control" [value]="inscripcion.impuesto" type="number" disabled>
+            </div>
+            
+            <div class="from-control">
+                <label for="">Total</label>
+                <input class="form-control" [value]="inscripcion.total" type="number" disabled>
+            </div>
+            <br>
+
+            <button class="btn-primary btn" (click)="guardar()">Guardar</button>
+        </div>
+
+        <div class="col-sm-6">
+            <div *ngIf="clienteSeleccionado.imgUrl">
+
+                <img [src]="clienteSeleccionado.imgUrl" alt="" class="imgCliente">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

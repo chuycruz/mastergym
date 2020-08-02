@@ -1,0 +1,28 @@
+.card-img-cliente{
+    max-width: 260px;
+    max-height: 260px;
+}
+
+.img-thumbnail {
+    padding: 0px !important;
+    background-color: #fff !important;
+    border: none !important; 
+    border-radius: 10px 10px 0 0 !important;
+    height: auto;
+}
+
+.card {
+    width: 100% !important;
+    border-radius: 10px !important;
+    box-shadow: 1px 1px 22px #a0a0a0 !important;
+    border: none  !important;
+}
+
+.card-body {
+    background: #343a40 !important;
+    border-radius: 0 0 10px 10px !important;
+}
+
+.card-title {
+    color:#fff
+}

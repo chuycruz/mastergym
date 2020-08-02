@@ -1,0 +1,123 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 *ngIf="!editarCliente">Agregar cliente</h4>
+            <h4 *ngIf="editarCliente" >Editar cliente</h4>
+        </div>
+
+        
+        <div class="col-sm-6">
+            <button class="btn float-right btn-danger" [routerLink]="['/listado-clientes']" routerLinkActive="router-link-active" >Ver Clientes</button>
+        </div>
+    </div>
+    <hr>
+
+        
+
+        <form [formGroup]="formularioClientes" action="">
+            <div class="row ">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Nombre(s)</label>
+                        <input type="text" class="form-control" formControlName="nombre">
+
+                        <div *ngIf="formularioClientes.controls['nombre'].invalid && formularioClientes.controls['nombre'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formularioClientes.controls['nombre'].errors.required">El nombre es requerido</span>
+                        </div>
+
+                    </div>    
+                </div>
+    
+                
+                <div class="col-sm-4">                    
+                    <div class="form-group">
+                        <label for="">Apellidos</label>
+                        <input type="text" class="form-control" formControlName="apellido" id="apellido" >
+
+                        <div *ngIf="formularioClientes.controls['apellido'].invalid && formularioClientes.controls['apellido'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formularioClientes.controls['apellido'].errors.required">Los apellidos son requeridos</span>
+                        </div>
+
+                   
+                    </div>    
+                </div>
+    
+                
+                <div class="col-sm-4">                    
+                    <div class="form-group">
+                        <label for="">Correo electrónico</label>
+                        <input type="text" class="form-control" formControlName="correo" id="correo" >
+
+                        <div *ngIf="formularioClientes.controls['correo'].invalid && formularioClientes.controls['correo'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formularioClientes.controls['correo'].errors.required">El correo electrónico es requerido</span>
+                            <span *ngIf="formularioClientes.controls['correo'].errors.email">El correo electrónico no es válido</span>
+                        </div>
+
+                    </div>    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Cédula</label>
+                        <input type="text" class="form-control" formControlName="cedula" id="cedula" >
+                    </div>    
+                </div>
+    
+                
+                <div class="col-sm-4">                    
+                    <div class="form-group">
+                        <label for="">Teléfono</label>
+                        <input type="tel" class="form-control" formControlName="telefono" id="telefono" >
+
+                        <div *ngIf="formularioClientes.controls['telefono'].invalid && formularioClientes.controls['telefono'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formularioClientes.controls['telefono'].errors.required">El teléfono es requerido</span>
+                        </div>
+
+                   
+                    </div>    
+                </div>
+    
+                
+                <div class="col-sm-4">                    
+                    <div class="form-group">
+                        <label for="">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" formControlName="fechaNacimiento" id="fechaNacimiento" >
+
+                        <div *ngIf="formularioClientes.controls['fechaNacimiento'].invalid && formularioClientes.controls['fechaNacimiento'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formularioClientes.controls['fechaNacimiento'].errors.required">La fecha de nacimiento es requerida</span>
+                        </div>
+
+                   
+                    </div>    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">                    
+                    <div class="form-group">
+                        <label for="">Subir foto</label>
+                        <input type="file" (change)="subirImagen($event)" class="form-control-file" formControlName="imgUrl">
+
+                        <div *ngIf="formularioClientes.controls['imgUrl'].invalid && formularioClientes.controls['imgUrl'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="formularioClientes.controls['imgUrl'].errors.required">La imagen es requerida</span>
+                        </div>
+
+                   
+                    </div>    
+                </div>
+                
+                <div class="col-sm-4">
+                     <div class="mb-2">
+                    <progressbar [value]="porcentajeSubida" type="danger" [striped]="true" [animate]="true"><i>{{porcentajeSubida}}%</i></progressbar>
+                    </div>
+                </div>
+            </div>
+            
+
+            <button *ngIf="!editarCliente" type="submit" class="btn btn-primary mt-4" [disabled]= "formularioClientes.invalid && !urlImagen" (click)="agregar()">Agregar cliente</button>
+            <button *ngIf="editarCliente" type="submit" class="btn btn-primary mt-4" [disabled]= "formularioClientes.invalid && !urlImagen" (click)="editar()">Editar cliente</button>
+            <button *ngIf="editarCliente" type="submit" class="btn btn-warning mt-4" (click)="eliminar()">Eliminar cliente</button>
+        </form>
+</div>
